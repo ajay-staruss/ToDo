@@ -26,4 +26,5 @@ urlpatterns = [
     path('',v2.index,name='list'),
     path('update_task/<str:pk>/', v2.updateTask, name="update_task"),
 	path('delete/<str:pk>/', v2.deleteTask, name="delete"),
+    path('logout/',v1.logout,name='logout'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
