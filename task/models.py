@@ -5,6 +5,8 @@ class Task(models.Model):
     title = models.CharField(max_length=250)
     complete = models.BooleanField(default = False)
     created = models.DateTimeField(auto_now_add=True)
+    created_by = models.CharField(max_length=200,null=True,blank=True)
+
     
 
     def __str__(self):

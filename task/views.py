@@ -8,12 +8,14 @@ from .forms import *
 
 def index(request):
 	if request.user.is_authenticated:
-		tasks = Task.objects.all()
+		tasks = Task.objects.filter(created_by=request.user.username)
 		form = TaskForm()
 		if request.method =='POST':
 			form = TaskForm(request.POST)
 			if form.is_valid():
-				form.save()
+				obj = form.save(commit=False)
+				obj.created_by = request.user.username
+				obj.save()
 			return redirect('/')
 		context = {'tasks':tasks, 'form':form}
 		return render(request, 'tasks/list.html', context)
